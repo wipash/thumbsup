@@ -49,7 +49,10 @@ function photoExtension (filepath) {
 function join (prefix, filepath) {
   if (prefix.match(/^https?:\/\//)) {
     return urljoin(prefix, filepath)
-  } else {
+  } else if (prefix.match(/^file:\/\//)) {
+    let joineduri = urljoin(prefix, filepath)
+    return joineduri.replace(/file:\/\/\//,"file://///")
+  } else  {
     return path.join(prefix, filepath)
   }
 }

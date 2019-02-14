@@ -5,8 +5,8 @@
   --}}
 
   <li data-html="#media{{id}}"
-      data-download-url="{{relative urls.download}}">
-    <a href="{{relative urls.download}}">
+      data-download-url="{{urls.download}}">
+    <a href="{{urls.download}}">
       <img src="{{relative urls.thumbnail}}"
            width="{{@root.gallery.thumbSize}}"
            height="{{@root.gallery.thumbSize}}"
@@ -23,7 +23,7 @@
 
   <li data-src="{{relative urls.large}}"
       data-sub-html="{{meta.caption}}"
-      data-download-url="{{relative urls.download}}"
+      data-download-url="{{urls.download}}"
       
       data-filename="{{filename}}"
 
@@ -43,7 +43,7 @@
         data-gpsaltitude="{{meta.exif.GPSAltitude}}"
       {{/if}}
     >
-    <a href="{{relative urls.download}}">
+    <a href="{{urls.download}}">
       <img src="{{relative urls.thumbnail}}"
            width="{{@root.gallery.thumbSize}}"
            height="{{@root.gallery.thumbSize}}"
