@@ -278,6 +278,27 @@ const OPTIONS = {
     'default': false
   },
 
+  'skip-index': {
+    group: 'Misc options:',
+    description: "Skip indexing filesystem",
+    type: 'boolean',
+    'default': false
+  },
+
+  'skip-process': {
+    group: 'Misc options:',
+    description: "Skip processing images",
+    type: 'boolean',
+    'default': false
+  },
+
+  'skip-website': {
+    group: 'Misc options:',
+    description: "Skip building website",
+    type: 'boolean',
+    'default': false
+  },
+
   // ------------------------------------
   // Deprecated options
   // ------------------------------------
@@ -414,7 +435,10 @@ exports.get = (args) => {
     gmArgs: opts['gm-args'],
     watermark: opts['watermark'],
     watermarkPosition: opts['watermark-position'],
-    embedExif: opts['embed-exif']
+    embedExif: opts['embed-exif'],
+    skipIndex: opts['skip-index'],
+    skipProcess: opts['skip-process'],
+    skipWebsite: opts['skip-website']
   }
 }
 

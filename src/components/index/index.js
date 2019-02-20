@@ -93,6 +93,26 @@ class Index {
   }
 
   /*
+  List current content of database
+  */
+  list () {
+    const emitter = new EventEmitter()
+    const countStatement = this.db.prepare('SELECT COUNT(*) AS count FROM files')
+    const selectMetadata = this.db.prepare('SELECT * FROM files')
+    for (var row of selectMetadata.iterate()) {
+      emitter.emit('file', {
+        path: row.path,
+        timestamp: new Date(row.timestamp),
+        metadata: JSON.parse(row.metadata)
+      })
+    }
+    // emit the final count
+    const result = countStatement.get()
+    emitter.emit('done', { count: result.count })
+    return emitter
+  }
+
+  /*
     Do a full vacuum to optimise the database
     which can be needed if files are often deleted/modified
   */
