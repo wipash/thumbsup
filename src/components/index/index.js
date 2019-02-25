@@ -97,9 +97,9 @@ class Index {
   */
   list () {
     const emitter = new EventEmitter()
-    async function processArray () {
-      const countStatement = this.db.prepare('SELECT COUNT(*) AS count FROM files')
-      const selectMetadata = this.db.prepare('SELECT * FROM files')  
+    async function processArray (db) {
+      const countStatement = db.prepare('SELECT COUNT(*) AS count FROM files')
+      const selectMetadata = db.prepare('SELECT * FROM files')  
 
       for (const row of selectMetadata.iterate()) {
         await emitter.emit('file', {
@@ -108,11 +108,11 @@ class Index {
           metadata: JSON.parse(row.metadata)
         })
       }
+      // emit the final count
       const result = countStatement.get()
       emitter.emit('done', { count: result.count })
     }
-    // emit the final count
-    processArray()
+    processArray(this.db, emitter)
     return emitter
   }
 

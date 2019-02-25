@@ -24,7 +24,7 @@ exports.build = function (opts, done) {
       task: (ctx, task) => {
         ctx.problems = new Problems()
         const tasks = steps.process(ctx.files, ctx.problems, opts, task)
-        if (!opts.dryRun) {
+        if (!opts.dryRun || !opts.skipProcess) {
           return tasks
         } else {
           task.skip()
